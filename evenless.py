@@ -81,6 +81,7 @@ def tokens_spam_prob(tokens):
     probs = [prob for prob in probs if prob is not None]
 
     eta = sum([math.log(1 - prob + PADDING) - math.log(prob + PADDING) for prob in probs])
+    eta = min(100, eta)
     prob = 1.0 / (1 + math.exp(eta))
     return prob
 
